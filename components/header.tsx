@@ -1,20 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { useTheme } from "next-themes"
 import Link from "next/link"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
 
 export default function Header() {
   const { setTheme } = useTheme()
-  const [walletConnected, setWalletConnected] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
-  const connectWallet = () => {
-    // In a real implementation, this would connect to MetaMask or another wallet
-    setWalletConnected(true)
-  }
 
   return (
     <header className="border-b border-[#2a2a5a] bg-[#161630]/80 backdrop-blur-md sticky top-0 z-10">
@@ -62,12 +56,63 @@ export default function Header() {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button
-            onClick={connectWallet}
-            className="bg-[#ff9d00] hover:bg-[#e68e00] text-white rounded-full px-6 font-oxanium"
-          >
-            {walletConnected ? "0x1a2...3b4c" : "Connect Wallet"}
-          </Button>
+          <ConnectButton.Custom>
+            {({
+              account,
+              chain,
+              openAccountModal,
+              openChainModal,
+              openConnectModal,
+              authenticationStatus,
+              mounted,
+            }) => {
+              const ready = mounted && authenticationStatus !== "loading"
+              const connected =
+                ready &&
+                account &&
+                chain &&
+                (!authenticationStatus || authenticationStatus === "authenticated")
+
+              return (
+                <div
+                  {...(!ready && {
+                    "aria-hidden": true,
+                    style: {
+                      opacity: 0,
+                      pointerEvents: "none",
+                      userSelect: "none",
+                    },
+                  })}
+                >
+                  {!connected ? (
+                    <button
+                      onClick={openConnectModal}
+                      type="button"
+                      className="bg-[#ff9d00] hover:bg-[#e68e00] text-white rounded-full px-6 py-2 font-oxanium font-bold transition"
+                    >
+                      Connect Wallet
+                    </button>
+                  ) : chain.unsupported ? (
+                    <button
+                      onClick={openChainModal}
+                      type="button"
+                      className="bg-red-600 text-white rounded-full px-6 py-2 font-oxanium font-bold transition"
+                    >
+                      Wrong network
+                    </button>
+                  ) : (
+                    <button
+                      onClick={openAccountModal}
+                      type="button"
+                      className="bg-[#ff9d00] hover:bg-[#e68e00] text-white rounded-full px-6 py-2 font-oxanium font-bold transition"
+                    >
+                      {account.displayName}
+                    </button>
+                  )}
+                </div>
+              )
+            }}
+          </ConnectButton.Custom>
 
           <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X /> : <Menu />}
