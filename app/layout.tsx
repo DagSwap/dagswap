@@ -2,6 +2,7 @@ import type React from "react"
 import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Oxanium } from "next/font/google"
+import { GlobalChat } from "@/app/components/GlobalChat"
 
 // Initialize the Oxanium font
 const oxanium = Oxanium({
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className="font-oxanium">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
+          <GlobalChat />
         </ThemeProvider>
       </body>
     </html>
