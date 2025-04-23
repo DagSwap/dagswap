@@ -1,0 +1,178 @@
+"use client"
+
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { ArrowDownIcon } from "lucide-react"
+import TokenSelector from "@/components/token-selector"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+export default function Swap() {
+  const [fromToken, setFromToken] = useState({
+    symbol: "BDAG",
+    name: "Bitdag",
+    logo: "/bdag-token.png",
+    balance: "1.245",
+  })
+
+  const [toToken, setToToken] = useState({
+    symbol: "DAGR",
+    name: "Dagorath",
+    logo: "/dagr-token.png",
+    balance: "0",
+  })
+
+  const [fromAmount, setFromAmount] = useState("")
+  const [toAmount, setToAmount] = useState("")
+  const [slippage, setSlippage] = useState(0.5)
+
+  const handleFromAmountChange = (e) => {
+    const value = e.target.value
+    setFromAmount(value)
+    // Simulate price calculation (in a real DEX this would use actual price data)
+    if (value && !isNaN(value)) {
+      setToAmount((Number.parseFloat(value) * 125.34).toFixed(2))
+    } else {
+      setToAmount("")
+    }
+  }
+
+  const handleToAmountChange = (e) => {
+    const value = e.target.value
+    setToAmount(value)
+    // Simulate reverse price calculation
+    if (value && !isNaN(value)) {
+      setFromAmount((Number.parseFloat(value) / 125.34).toFixed(6))
+    } else {
+      setFromAmount("")
+    }
+  }
+
+  const switchTokens = () => {
+    const tempToken = fromToken
+    setFromToken(toToken)
+    setToToken(tempToken)
+
+    const tempAmount = fromAmount
+    setFromAmount(toAmount)
+    setToAmount(tempAmount)
+  }
+
+  return (
+    <Card className="border-0 bg-[#1e1e45] rounded-[24px] shadow-lg overflow-hidden">
+      <CardContent className="p-6">
+        <div className="mb-6">
+          <Tabs defaultValue="swap" className="w-full">
+            <TabsList className="inline-flex h-9 items-center justify-center rounded-full bg-[#252550] p-1 font-oxanium">
+              <TabsTrigger
+                value="swap"
+                className="rounded-full px-3 py-1 text-sm font-medium data-[state=active]:bg-[#ff9d00] data-[state=active]:text-white"
+              >
+                Swap
+              </TabsTrigger>
+              <TabsTrigger
+                value="limit"
+                className="rounded-full px-3 py-1 text-sm font-medium data-[state=active]:bg-[#ff9d00] data-[state=active]:text-white"
+              >
+                Limit
+              </TabsTrigger>
+              <TabsTrigger
+                value="dca"
+                className="rounded-full px-3 py-1 text-sm font-medium data-[state=active]:bg-[#ff9d00] data-[state=active]:text-white"
+              >
+                DCA
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
+
+        <div className="space-y-4">
+          <div className="rounded-[20px] bg-[#252550] p-4">
+            <div className="flex justify-between mb-2">
+              <span className="text-sm text-white/70 font-oxanium">Sell</span>
+              <span className="text-sm text-white/70 font-oxanium">
+                Balance: {fromToken.balance} {fromToken.symbol}
+              </span>
+            </div>
+
+            <div className="flex gap-2">
+              <Input
+                type="number"
+                placeholder="0.0"
+                className="border-0 bg-transparent text-2xl text-white focus-visible:ring-0 focus-visible:ring-offset-0 p-0 font-oxanium"
+                value={fromAmount}
+                onChange={handleFromAmountChange}
+              />
+              <TokenSelector selectedToken={fromToken} onSelectToken={setFromToken} />
+            </div>
+
+            <div className="mt-2 text-sm text-white/70 font-oxanium">
+              ${fromAmount ? (Number.parseFloat(fromAmount) * 2500).toFixed(2) : "0.00"}
+            </div>
+          </div>
+
+          <div className="flex justify-center -my-2 z-10 relative">
+            <Button
+              variant="outline"
+              size="icon"
+              className="rounded-full bg-[#252550] border-[#3a3a70] hover:bg-[#2a2a5a] hover:text-white"
+              onClick={switchTokens}
+            >
+              <ArrowDownIcon className="h-4 w-4" />
+            </Button>
+          </div>
+
+          <div className="rounded-[20px] bg-[#252550] p-4">
+            <div className="flex justify-between mb-2">
+              <span className="text-sm text-white/70 font-oxanium">Buy</span>
+              <span className="text-sm text-white/70 font-oxanium">
+                Balance: {toToken.balance} {toToken.symbol}
+              </span>
+            </div>
+
+            <div className="flex gap-2">
+              <Input
+                type="number"
+                placeholder="0.0"
+                className="border-0 bg-transparent text-2xl text-white focus-visible:ring-0 focus-visible:ring-offset-0 p-0 font-oxanium"
+                value={toAmount}
+                onChange={handleToAmountChange}
+              />
+              <TokenSelector selectedToken={toToken} onSelectToken={setToToken} />
+            </div>
+
+            <div className="mt-2 text-sm text-white/70 font-oxanium">
+              ${toAmount ? (Number.parseFloat(toAmount) * 20).toFixed(2) : "0.00"}
+            </div>
+          </div>
+
+          {fromAmount && toAmount && (
+            <div className="text-sm p-3 rounded-lg bg-[#252550] font-oxanium">
+              <div className="flex justify-between">
+                <span className="text-white/70">Price</span>
+                <span className="text-white">
+                  1 {fromToken.symbol} = 125.34 {toToken.symbol}
+                </span>
+              </div>
+              <div className="flex justify-between mt-1">
+                <span className="text-white/70">Minimum received</span>
+                <span className="text-white">
+                  {(Number.parseFloat(toAmount) * (1 - slippage / 100)).toFixed(2)} {toToken.symbol}
+                </span>
+              </div>
+              <div className="flex justify-between mt-1">
+                <span className="text-white/70">Slippage Tolerance</span>
+                <span className="text-white">{slippage}%</span>
+              </div>
+            </div>
+          )}
+
+          <Button className="w-full bg-[#ff9d00] hover:bg-[#e68e00] text-white h-12 text-lg rounded-full font-oxanium">
+            Swap
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  )
+}

@@ -1,0 +1,133 @@
+"use client"
+
+import { useState } from "react"
+import { Input } from "@/components/ui/input"
+import { Search } from "lucide-react"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+
+// Sample token data
+const tokens = [
+  {
+    id: 1,
+    name: "Bitdag",
+    symbol: "BDAG",
+    logo: "/bdag-token.png",
+    price: "$2.45",
+    change: "+5.2%",
+    volume: "$1.2B",
+    marketCap: "$390M",
+    positive: true,
+  },
+  {
+    id: 2,
+    name: "Dagorath",
+    symbol: "DAGR",
+    logo: "/dagr-token.png",
+    price: "$0.0195",
+    change: "+12.8%",
+    volume: "$245M",
+    marketCap: "$75M",
+    positive: true,
+  },
+  {
+    id: 3,
+    name: "Ethereum",
+    symbol: "ETH",
+    logo: "/ethereal-threads.png",
+    price: "$3,245.67",
+    change: "+5.2%",
+    volume: "$1.2B",
+    marketCap: "$390B",
+    positive: true,
+  },
+  {
+    id: 4,
+    name: "PancakeSwap Token",
+    symbol: "CAKE",
+    logo: "/colorful-layered-cake.png",
+    price: "$2.45",
+    change: "+12.8%",
+    volume: "$245M",
+    marketCap: "$750M",
+    positive: true,
+  },
+  {
+    id: 5,
+    name: "Binance Coin",
+    symbol: "BNB",
+    logo: "/BNB-Abstract-Bull.png",
+    price: "$320.15",
+    change: "-1.5%",
+    volume: "$850M",
+    marketCap: "$52B",
+    positive: false,
+  },
+  {
+    id: 6,
+    name: "Tether USD",
+    symbol: "USDT",
+    logo: "/tethered-currency.png",
+    price: "$1.00",
+    change: "+0.1%",
+    volume: "$45B",
+    marketCap: "$83B",
+    positive: true,
+  },
+]
+
+export default function TokenList() {
+  const [searchQuery, setSearchQuery] = useState("")
+
+  const filteredTokens = tokens.filter(
+    (token) =>
+      token.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      token.symbol.toLowerCase().includes(searchQuery.toLowerCase()),
+  )
+
+  return (
+    <div>
+      <div className="relative max-w-sm mx-auto mb-6">
+        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-white/50" />
+        <Input
+          placeholder="Search tokens"
+          className="pl-8 bg-[#252550] border-[#3a3a70] text-white rounded-full"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+
+      <div className="rounded-[20px] overflow-hidden border border-[#3a3a70]">
+        <Table>
+          <TableHeader className="bg-[#252550]">
+            <TableRow className="hover:bg-transparent border-b-[#3a3a70]">
+              <TableHead className="text-white w-[250px]">Token</TableHead>
+              <TableHead className="text-white">Price</TableHead>
+              <TableHead className="text-white">24h Change</TableHead>
+              <TableHead className="text-white hidden md:table-cell">24h Volume</TableHead>
+              <TableHead className="text-white hidden md:table-cell">Market Cap</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {filteredTokens.map((token) => (
+              <TableRow key={token.id} className="hover:bg-[#252550] border-b-[#3a3a70]">
+                <TableCell>
+                  <div className="flex items-center gap-3">
+                    <img src={token.logo || "/placeholder.svg"} alt={token.symbol} className="w-8 h-8 rounded-full" />
+                    <div>
+                      <div className="font-medium">{token.name}</div>
+                      <div className="text-sm text-white/70">{token.symbol}</div>
+                    </div>
+                  </div>
+                </TableCell>
+                <TableCell className="font-medium">{token.price}</TableCell>
+                <TableCell className={token.positive ? "text-green-400" : "text-red-400"}>{token.change}</TableCell>
+                <TableCell className="hidden md:table-cell">{token.volume}</TableCell>
+                <TableCell className="hidden md:table-cell">{token.marketCap}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    </div>
+  )
+}
