@@ -1,4 +1,3 @@
-
 import type React from "react"
 import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -6,6 +5,7 @@ import { Oxanium } from "next/font/google"
 import '@rainbow-me/rainbowkit/styles.css'
 import Web3Provider from "@/components/Web3Provider"
 import { GlobalChat } from "@/app/components/GlobalChat"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 const oxanium = Oxanium({
   subsets: ["latin"],
@@ -26,11 +26,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className={oxanium.variable}>
-      <body className="font-oxanium">
+      <body className="font-oxanium overflow-hidden h-screen">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <Web3Provider>
-            {children}
-          <GlobalChat />
+            <ScrollArea className="h-screen" type="always">
+              {children}
+            </ScrollArea>
+            <GlobalChat />
           </Web3Provider>
         </ThemeProvider>
       </body>

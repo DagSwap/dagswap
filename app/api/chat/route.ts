@@ -10,10 +10,15 @@ export async function POST(request: Request) {
 
     const result = await streamText({
       model: google('models/gemini-2.0-flash-exp'),
-      system: 'You are an AI assistant knowledgeable about the DagSwap DEX, a decentralized exchange built on BlockDAG. Answer user questions based only on information you reasonably know about decentralized exchanges and BlockDAG technology. If you dont know the answer, say you dont know. You are a helpful assistant that can help users with their questions about DagSwap.',
+      system: `You are an AI assistant knowledgeable about theDagSwap - LightSpeed Swap! , A decentralized exchange for swapping tokens, providing liquidity, and farming tokens. exchange built on BlockDAG. Answer user questions based only on information you reasonably know about decentralized exchanges and BlockDAG technology. If you dont know the answer, say you dont know. You are a helpful assistant that can help users with their questions about DagSwap.
+      
+     
+      instructions:
+      - You are a helpful assistant that can help users with their questions about DagSwap.
+      -  you give concise answers about the DagSwap DEX and BlockDAG technology.
+      `,
       messages,
     });
-    console.log( result.finishReason);
     return result.toDataStreamResponse();
 
   } catch (error) {

@@ -22,7 +22,6 @@ export function GlobalChat() {
 
   const handleClose = () => {
     setIsOpen(false);
-    setMessages([]); 
   }
 
   // Scroll to bottom whenever messages change
@@ -34,7 +33,7 @@ export function GlobalChat() {
             if (scrollElement) {
                 scrollElement.scrollTop = scrollElement.scrollHeight;
             }
-        }, 0);
+        }, 100); // Increased delay slightly
     }
   }, [messages, isOpen]);
 
@@ -65,9 +64,9 @@ export function GlobalChat() {
               <X className="h-5 w-5" />
             </Button>
           </CardHeader>
-          <CardContent className="flex-1 p-0">
-              <ScrollArea className="h-full p-4" ref={scrollAreaRef}>
-                 <div className="space-y-4">
+          <CardContent className="flex-1 p-0 overflow-hidden">
+              <ScrollArea className="h-full px-4" ref={scrollAreaRef} type="always">
+                 <div className="space-y-4 py-4">
                     {messages.length === 0 && !isLoading && (
                        <div className="text-center text-muted-foreground pt-4">Ask me anything about DagSwap!</div>
                     )}
@@ -75,14 +74,14 @@ export function GlobalChat() {
                       <div 
                         key={message.id} 
                         className={cn(
-                            "flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm",
+                            "flex w-fit max-w-[85%] flex-col gap-2 rounded-lg px-3 py-2 text-sm break-words",
                             message.role === "user" ? "ml-auto bg-primary text-primary-foreground" : "bg-muted"
                         )}
                        >
                         <span className="font-semibold capitalize">{message.role === 'user' ? 'You' : 'AI'}</span>
                         {/* Render message content, handling potential newlines */} 
                         {message.content.split('\n').map((line, index) => (
-                          <span key={index}>{line}</span>
+                          <span key={index} className="break-words whitespace-pre-wrap">{line}</span>
                         ))}
                       </div>
                     ))}
