@@ -54,7 +54,8 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-oxanium;
+    @apply bg-background text-foreground;
+    font-family: var(--font-gg-sans);
   }
 
   h1,
@@ -63,14 +64,14 @@
   h4,
   h5,
   h6 {
-    @apply font-oxanium font-bold;
+    @apply font-bold;
   }
 
   button,
   input,
   select,
   textarea {
-    @apply font-oxanium;
+    /* You might want to apply .font-ui here if needed */
   }
 }
 
@@ -83,4 +84,11 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+/* Add a utility class for Oxanium font */
+@layer utilities {
+  .font-ui {
+    font-family: var(--font-oxanium);
+  }
 }
