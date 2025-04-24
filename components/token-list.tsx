@@ -85,19 +85,23 @@ export default function TokenList() {
   )
 
   return (
-    <div>
-      <div className="relative max-w-sm mx-auto mb-6">
-        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-white/50" />
-        <Input
-          placeholder="Search tokens"
-          className="pl-8 bg-[#252550] border-[#3a3a70] text-white rounded-full"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
+    <div className="z-20">
+      <div className="flex items-center justify-between">
+        <h2 className="text-6xl font-bold text-center mb-8 z-20">Top Tokens</h2>
+        <div className="relative mb-6 min-w-[300px] z-20">
+          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-dag-orange" />
+          <Input
+            placeholder="Search tokens"
+            className="pl-8 bg-[#252550] border-[#3a3a70] text-white rounded-full"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
       </div>
+      
 
-      <div className="rounded-[20px] overflow-hidden border border-[#3a3a70]">
-        <Table>
+      <div className="rounded-[20px] z-20 overflow-hidden border border-[#3a3a70]">
+        <Table className="z-20">
           <TableHeader className="bg-[#252550]">
             <TableRow className="hover:bg-transparent border-b-[#3a3a70]">
               <TableHead className="text-white w-[250px]">Token</TableHead>

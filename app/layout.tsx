@@ -5,7 +5,7 @@ import { Oxanium } from "next/font/google"
 import localFont from 'next/font/local'
 import '@rainbow-me/rainbowkit/styles.css'
 import Web3Provider from "@/components/Web3Provider"
-import { GlobalChat } from "@/app/components/GlobalChat"
+import { GlobalChat } from "@/components/GlobalChat"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 const oxanium = Oxanium({
@@ -52,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={` ${ggSans.variable} ${oxanium.variable}`}>
+    <html lang="en" suppressHydrationWarning className={` ${ggSans.variable} `}>
       <body className="font-sans overflow-hidden h-screen">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <Web3Provider>

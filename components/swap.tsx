@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { ArrowDownIcon } from "lucide-react"
+import { ArrowDownIcon, Wallet } from "lucide-react"
 import TokenSelector from "@/components/token-selector"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
@@ -27,27 +27,37 @@ export default function Swap() {
   const [toAmount, setToAmount] = useState("")
   const [slippage, setSlippage] = useState(0.5)
 
-  const handleFromAmountChange = (e) => {
-    const value = e.target.value
-    setFromAmount(value)
-    // Simulate price calculation (in a real DEX this would use actual price data)
-    if (value && !isNaN(value)) {
-      setToAmount((Number.parseFloat(value) * 125.34).toFixed(2))
+  const handleMaxClick = () => {
+    setFromAmount(fromToken.balance);
+    // Recalculate 'toAmount' based on the max 'fromAmount'
+    if (fromToken.balance && !isNaN(Number.parseFloat(fromToken.balance))) {
+      setToAmount((Number.parseFloat(fromToken.balance) * 125.34).toFixed(2));
     } else {
-      setToAmount("")
+      setToAmount("");
     }
-  }
+  };
 
-  const handleToAmountChange = (e) => {
-    const value = e.target.value
-    setToAmount(value)
-    // Simulate reverse price calculation
-    if (value && !isNaN(value)) {
-      setFromAmount((Number.parseFloat(value) / 125.34).toFixed(6))
+  const handleFromAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setFromAmount(value);
+    // Simulate price calculation
+    if (value && !isNaN(Number.parseFloat(value))) {
+      setToAmount((Number.parseFloat(value) * 125.34).toFixed(2));
     } else {
-      setFromAmount("")
+      setToAmount("");
     }
-  }
+  };
+
+  const handleToAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setToAmount(value);
+    // Simulate reverse price calculation
+    if (value && !isNaN(Number.parseFloat(value))) {
+      setFromAmount((Number.parseFloat(value) / 125.34).toFixed(6));
+    } else {
+      setFromAmount("");
+    }
+  };
 
   const switchTokens = () => {
     const tempToken = fromToken
@@ -60,26 +70,26 @@ export default function Swap() {
   }
 
   return (
-    <Card className="border-0 bg-[#1e1e45] rounded-[24px] shadow-lg overflow-hidden">
+    <Card className="bg-[#342858]/40 backdrop-blur-lg rounded-[29px] shadow-lg border border-[#2a2a5a]/50 overflow-hidden">
       <CardContent className="p-6">
         <div className="mb-6">
           <Tabs defaultValue="swap" className="w-full">
-            <TabsList className="inline-flex h-9 items-center justify-center rounded-full bg-[#252550] p-1 font-oxanium">
+            <TabsList className="inline-flex h-9 items-center justify-center rounded-full font-oxanium space-x-1">
               <TabsTrigger
                 value="swap"
-                className="rounded-full px-3 py-1 text-sm font-medium data-[state=active]:bg-[#ff9d00] data-[state=active]:text-white"
+                className="rounded-full px-3 py-1 text-sm font-medium text-white/70 data-[state=active]:bg-[#ff9d00] data-[state=active]:text-white"
               >
                 Swap
               </TabsTrigger>
               <TabsTrigger
                 value="limit"
-                className="rounded-full px-3 py-1 text-sm font-medium data-[state=active]:bg-[#ff9d00] data-[state=active]:text-white"
+                className="rounded-full px-3 py-1 text-sm font-medium text-white/70 data-[state=active]:bg-[#ff9d00] data-[state=active]:text-white"
               >
                 Limit
               </TabsTrigger>
               <TabsTrigger
                 value="dca"
-                className="rounded-full px-3 py-1 text-sm font-medium data-[state=active]:bg-[#ff9d00] data-[state=active]:text-white"
+                className="rounded-full px-3 py-1 text-sm font-medium text-white/70 data-[state=active]:bg-[#ff9d00] data-[state=active]:text-white"
               >
                 DCA
               </TabsTrigger>
@@ -88,23 +98,31 @@ export default function Swap() {
         </div>
 
         <div className="space-y-4">
-          <div className="rounded-[20px] bg-[#252550] p-4">
+          <div className="rounded-[20px] bg-[#4E377B]/40 p-4">
             <div className="flex justify-between mb-2">
               <span className="text-sm text-white/70 font-oxanium">Sell</span>
-              <span className="text-sm text-white/70 font-oxanium">
-                Balance: {fromToken.balance} {fromToken.symbol}
-              </span>
             </div>
 
             <div className="flex gap-2">
               <Input
                 type="number"
                 placeholder="0.0"
-                className="border-0 bg-transparent text-2xl text-white focus-visible:ring-0 focus-visible:ring-offset-0 p-0 font-oxanium"
+                className="border-0 bg-transparent text-6xl text-[#FFC94D] focus-visible:ring-0 focus-visible:ring-offset-0 p-0 font-oxanium placeholder:text-[#FFC94D]"
                 value={fromAmount}
                 onChange={handleFromAmountChange}
               />
               <TokenSelector selectedToken={fromToken} onSelectToken={setFromToken} />
+            </div>
+
+            <div className="flex items-center justify-between mt-2">
+                <div className="flex items-center gap-1">
+                    <span className="text-sm text-white/70 font-oxanium">
+                        Balance: {fromToken.balance}
+                    </span>
+                </div>
+                <Button variant="link" className="text-[#ff9d00] hover:text-[#e68e00] h-auto p-0 text-sm font-oxanium" onClick={handleMaxClick}>
+                    Max
+                </Button>
             </div>
 
             <div className="mt-2 text-sm text-white/70 font-oxanium">
@@ -116,14 +134,14 @@ export default function Swap() {
             <Button
               variant="outline"
               size="icon"
-              className="rounded-full bg-[#252550] border-[#3a3a70] hover:bg-[#2a2a5a] hover:text-white"
+              className="rounded-full  bg-[#4E377B]/40 border-[#3a3a70] hover:bg-[#2a2a5a] hover:text-white"
               onClick={switchTokens}
             >
               <ArrowDownIcon className="h-4 w-4" />
             </Button>
           </div>
 
-          <div className="rounded-[20px] bg-[#252550] p-4">
+          <div className="rounded-[20px]  bg-[#4E377B]/40 p-4">
             <div className="flex justify-between mb-2">
               <span className="text-sm text-white/70 font-oxanium">Buy</span>
               <span className="text-sm text-white/70 font-oxanium">
