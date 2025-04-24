@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+import defaultTheme from "tailwindcss/defaultTheme"
 
 const config = {
   darkMode: ["class"],
@@ -20,6 +21,7 @@ const config = {
     },
     extend: {
       fontFamily: {
+        sans: ["var(--font-gg-sans)", ...defaultTheme.fontFamily.sans],
         oxanium: ["var(--font-oxanium)", "sans-serif"],
       },
       colors: {
@@ -56,6 +58,7 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "dag-orange": "hsl(var(--dag-orange))",
       },
       borderRadius: {
         lg: "1.25rem",

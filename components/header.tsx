@@ -5,22 +5,17 @@ import { Menu, X } from "lucide-react"
 import { useTheme } from "next-themes"
 import Link from "next/link"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
-
+import Image from "next/image"
 export default function Header() {
   const { setTheme } = useTheme()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="border-b border-[#2a2a5a] bg-[#161630]/80 backdrop-blur-md sticky top-0 z-10">
+    <header className="border-b border-[#2a2a5a] bg-[#161630]/80 backdrop-blur-md sticky top-0 z-30">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="relative">
-            <div className="w-10 h-10 bg-[#6c3ce9] rounded-lg rotate-45 relative overflow-hidden">
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#ff9d00] rounded-full"></div>
-            </div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl font-bold text-white">
-              D
-            </div>
+            <Image src="/assets/logo.png" alt="Dag Logo" width={25} height={28} />
           </div>
           <span className="font-bold text-xl hidden sm:inline font-oxanium">
             <span className="text-white">Dag</span>
