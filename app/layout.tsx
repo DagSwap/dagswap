@@ -8,6 +8,7 @@ import Web3Provider from '@/components/Web3Provider'
 import { GlobalChat } from '@/components/GlobalChat'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import Header from '@/components/header'
+import Footer from '@/components/footer'
 
 const oxanium = Oxanium({
   subsets: ['latin'],
@@ -55,7 +56,7 @@ export default function RootLayout ({
 }) {
   return (
     <html lang='en' suppressHydrationWarning className={` ${ggSans.variable} `}>
-      <body className='font-sans overflow-hidden h-screen'>
+      <body className='font-sans flex flex-col min-h-screen'>
         <ThemeProvider
           attribute='class'
           defaultTheme='dark'
@@ -66,6 +67,7 @@ export default function RootLayout ({
             <ScrollArea className='h-screen' type='always'>
               <Header />
               {children}
+              <Footer />
             </ScrollArea>
             <GlobalChat />
           </Web3Provider>
