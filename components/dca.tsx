@@ -62,14 +62,14 @@ export default function DCA () {
   // DCA form state
   const [fromToken, setFromToken] = useState<Token>({
     symbol: 'BDAG',
-    name: 'Bitdag',
-    logo: '/bdag-token.png',
+    name: 'BlockDAG',
+    logo: '/cube.webp',
     balance: '1.245'
   })
   const [toToken, setToToken] = useState<Token>({
-    symbol: 'DAGR',
-    name: 'Dagorath',
-    logo: '/dagr-token.png',
+    symbol: 'DAGGR',
+    name: 'DagSwap',
+    logo: '/assets/logo.png',
     balance: '0'
   })
   const [amount, setAmount] = useState('')
@@ -82,20 +82,20 @@ export default function DCA () {
       id: 1,
       fromToken: {
         symbol: 'BDAG',
-        logo: '/bdag-token.png'
+        logo: '/cube.webp'
       },
       toToken: {
-        symbol: 'DAGR',
-        logo: '/dagr-token.png'
+        symbol: 'DAGGR',
+        logo: '/assets/logo.png'
       },
-      amount: '50',
+      amount: '150',
       frequency: 'Weekly',
-      nextExecution: 'Apr 25, 2025',
+      nextExecution: 'Apr 14, 2025',
       totalInvested: '$350',
       tokensAcquired: '17,895.45',
       avgPrice: '$0.0196',
       status: 'active',
-      created: 'Mar 12, 2025'
+      created: 'May 12, 2025'
     },
     {
       id: 2,
@@ -114,7 +114,7 @@ export default function DCA () {
       tokensAcquired: '0.092',
       avgPrice: '$3,260.87',
       status: 'active',
-      created: 'Feb 15, 2025'
+      created: 'mar 15, 2025'
     },
     {
       id: 3,

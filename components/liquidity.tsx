@@ -11,15 +11,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 export default function Liquidity () {
   const [token1, setToken1] = useState({
     symbol: 'BDAG',
-    name: 'Bitdag',
-    logo: '/bdag-token.png',
+    name: 'BlockDAG',
+    logo: '/cube.webp',
     balance: '1.245'
   })
 
   const [token2, setToken2] = useState({
-    symbol: 'DAGR',
-    name: 'Dagorath',
-    logo: '/dagr-token.png',
+    symbol: 'DAGGR',
+    name: 'DagSwap',
+    logo: '/assets/logo.png',
     balance: '245.75'
   })
 

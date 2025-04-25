@@ -10,14 +10,14 @@ import { Search, ChevronDown } from "lucide-react"
 const tokens = [
   {
     symbol: "BDAG",
-    name: "Bitdag",
-    logo: "/bdag-token.png",
+    name: "BlockDAG",
+    logo: "/cube.webp",
     balance: "1.245",
   },
   {
-    symbol: "DAGR",
-    name: "Dagorath",
-    logo: "/dagr-token.png",
+    symbol: "DAGGR",
+    name: "DagSwap",
+    logo: "/assets/logo.png",
     balance: "245.75",
   },
   {

@@ -63,11 +63,11 @@ export default function Farm () {
       pair: 'BDAG-DAGR',
       token1: {
         symbol: 'BDAG',
-        logo: '/bdag-token.png'
+        logo: '/cube.webp'
       },
       token2: {
-        symbol: 'DAGR',
-        logo: '/dagr-token.png'
+        symbol: 'DAGGR',
+        logo: '/assets/logo.png'
       },
       apr: 45.2,
       tvl: '$2.5M',
@@ -231,7 +231,7 @@ export default function Farm () {
                       </TableCell>
                       <TableCell>{farm.tvl}</TableCell>
                       <TableCell>{farm.multiplier}</TableCell>
-                      <TableCell>{farm.earned} DAGR</TableCell>
+                      <TableCell>{farm.earned} DAGGR</TableCell>
                       <TableCell>
                         <Dialog>
                           <DialogTrigger asChild>
