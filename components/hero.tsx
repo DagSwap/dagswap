@@ -1,7 +1,11 @@
 import Image from 'next/image'
 import Swap from './swap'
+import { useState } from 'react'
+import { VideoModal } from './VideoModal'
 
 export default function Hero () {
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
+
   return (
     <div className='pt-4 pb-16 flex flex-col relative items-center justify-start h-[75vh]'>
       <div className='flex flex-row justify-between w-full z-20 '>
@@ -25,14 +29,14 @@ export default function Hero () {
               LightSpeed Swap!
             </p>
             <div className='flex gap-4 mb-12'>
-              <a
-                href='#'
+              <button
+                onClick={() => setIsVideoModalOpen(true)}
                 className='px-5 py-2 bg-[#ff9d00] text-white rounded-full font-medium hover:bg-[#e68e00] transition-colors'
               >
                 Start Trading
-              </a>
+              </button>
               <a
-                href='#'
+                href='/pdf'
                 className='px-5 py-2 bg-transparent border border-[#ff9d00] text-[#ff9d00] rounded-full font-medium hover:bg-[#ff9d00]/10 transition-colors'
               >
                 Learn More
@@ -50,6 +54,12 @@ export default function Hero () {
         height={800}
         objectFit='cover'
         className='absolute bottom-[-100px]'
+      />
+      
+      <VideoModal 
+        isOpen={isVideoModalOpen} 
+        onOpenChange={setIsVideoModalOpen}
+        videoId="aRxCCP4zUts"
       />
     </div>
   )

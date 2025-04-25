@@ -16,9 +16,9 @@ import {
 const tokens = [
   {
     id: 1,
-    name: 'Bitdag',
+    name: 'BlockDAG',
     symbol: 'BDAG',
-    logo: '/bdag-token.png',
+    logo: '/cube.webp',
     price: '$2.45',
     change: '+5.2%',
     volume: '$1.2B',
@@ -27,9 +27,9 @@ const tokens = [
   },
   {
     id: 2,
-    name: 'Dagorath',
-    symbol: 'DAGR',
-    logo: '/dagr-token.png',
+    name: 'DagSwap',
+    symbol: 'DAGGR',
+    logo: '/assets/logo.png',
     price: '$0.0195',
     change: '+12.8%',
     volume: '$245M',
