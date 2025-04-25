@@ -8,8 +8,10 @@ export default function TeamPage() {
   // Always open, cannot be closed
   const [isOpen] = useState(true)
   
+  const [isVideoDialogOpen, setIsVideoDialogOpen] = useState(true)
+
   return (
-    <div className="relative w-full h-[100vh] bg-[#1F1B37] flex flex-col items-center justify-center overflow-hidden">
+    <div className="relative w-full h-[calc(100vh+150px)] bg-[#1F1B37] flex flex-col items-center justify-center overflow-hidden">
       {/* Team image as background */}
       <div className="w-full h-full absolute top-[-150px] left-0 z-0">
         <Image 
@@ -22,7 +24,7 @@ export default function TeamPage() {
       </div>
       
       {/* Video Dialog that cannot be closed */}
-      <Dialog open={isOpen} onOpenChange={() => {}}>
+      <Dialog open={isVideoDialogOpen} onOpenChange={setIsVideoDialogOpen}>
         <DialogContent className='w-8xl max-w-4xl' overlayClassName='backdrop-blur-none'>
           <DialogHeader>
             <DialogTitle className='text-xl font-bold'>

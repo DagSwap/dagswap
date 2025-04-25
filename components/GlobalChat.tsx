@@ -30,24 +30,20 @@ export function GlobalChat () {
     error,
     reload
   } = useChat({
+    onFinish: (message: Message) => {
+      console.log("useChat onFinish triggered. Message:", message); // Log details
+      // Trim whitespace and convert to lowercase for robust comparison
+      const finalContent = message.content.trim().toLowerCase();
+      if (message.role === 'assistant' && finalContent === 'start the party.') {
+        console.log("Starting party via onFinish (trimmed/lowercase check)!");
+        setIsVideoModalOpen(true);
+      }
+    },
     onError: err => {
-      console.error('Client-side useChat error:', err)
+      console.error('Client-side useChat error:', err);
     }
   })
   const scrollAreaRef = useRef<HTMLDivElement>(null)
-
-  // Check messages for "Start the party."
-  useEffect(() => {
-    const lastMessage = messages[messages.length - 1]
-    console.log("Last message check:", lastMessage?.role, lastMessage?.content);
-    if (
-      lastMessage?.role === 'assistant' &&
-      lastMessage?.content === 'Start the party.'
-    ) {
-      console.log("Starting party! Opening video modal");
-      setIsVideoModalOpen(true)
-    }
-  }, [messages])
 
   const toggleChat = () => setIsOpen(!isOpen)
 
