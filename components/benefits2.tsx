@@ -13,9 +13,12 @@ const Benefits2 = () => {
           <p className='text-sm mb-4'>
             Revolucionando el mercado DeFi con tecnologia BlockDAG
           </p>
-          <button className='bg-gradient-to-r from-yellow-400 to-orange-500 text-[#161630] font-bold px-6 py-2 rounded-full hover:opacity-90 transition-opacity duration-200'>
+          <a
+            href='/pdf'
+            className='bg-gradient-to-r from-yellow-400 to-orange-500 text-[#161630] font-bold px-6 py-2 rounded-full hover:opacity-90 transition-opacity duration-200'
+          >
             Learn More
-          </button>
+          </a>
         </div>
       </div>
 

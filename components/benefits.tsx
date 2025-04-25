@@ -31,9 +31,12 @@ const Benefits = () => {
             segundos, ofrecemos una interfaz súper simple y mantenemos las
             comisiones bajas y predecibles.
           </p>
-          <button className='bg-gradient-to-r from-yellow-400 to-orange-500 text-[#161630] font-bold px-6 py-2 rounded-full hover:opacity-90 transition-opacity duration-200'>
+          <a
+            href='/pdf'
+            className='bg-gradient-to-r from-yellow-400 to-orange-500 text-[#161630] font-bold px-6 py-2 rounded-full hover:opacity-90 transition-opacity duration-200'
+          >
             Learn More
-          </button>
+          </a>
         </div>
       </div>
     </div>

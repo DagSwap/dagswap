@@ -13,14 +13,9 @@ import {
   CardTitle
 } from '@/components/ui/card'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { MessageSquare, X, Send, AlertCircle, Sparkles } from 'lucide-react' // Using lucide icons
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogClose
-} from '@/components/ui/dialog'
+import { X, Send, AlertCircle, Sparkles } from 'lucide-react'
+
+import { VideoModal } from '@/components/VideoModal'
 
 export function GlobalChat () {
   const [isOpen, setIsOpen] = useState(false)
@@ -44,10 +39,12 @@ export function GlobalChat () {
   // Check messages for "Start the party."
   useEffect(() => {
     const lastMessage = messages[messages.length - 1]
+    console.log("Last message check:", lastMessage?.role, lastMessage?.content);
     if (
       lastMessage?.role === 'assistant' &&
       lastMessage?.content === 'Start the party.'
     ) {
+      console.log("Starting party! Opening video modal");
       setIsVideoModalOpen(true)
     }
   }, [messages])
@@ -190,26 +187,8 @@ export function GlobalChat () {
       )}
 
       {/* Video Modal */}
-      <Dialog open={isVideoModalOpen} onOpenChange={setIsVideoModalOpen}>
-        <DialogContent className='w-8xl'>
-          <DialogHeader>
-            <DialogTitle className='text-xl font-bold'>
-              🎉 DagSwap Party Time! 🎉
-            </DialogTitle>
-            <DialogClose className='absolute right-4 top-4' />
-          </DialogHeader>
-          <div className='aspect-video w-full'>
-            <video
-              src='https://gsr2hpvfrp.ufs.sh/f/NIbYiJT86uK3v7FnLrHA9NSBJQiCjzwLkhTtfxW5Fm0nEMXD'
-              controls
-              autoPlay
-              className='w-full h-full'
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <VideoModal isOpen={isVideoModalOpen} onOpenChange={setIsVideoModalOpen} />
+     
     </>
   )
 }

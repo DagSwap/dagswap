@@ -17,7 +17,9 @@ export default function Header () {
     { href: '/', label: 'Swap' },
     { href: '/liquidity', label: 'Liquidity' },
     { href: '/dca', label: 'DCA' },
-    { href: '/analytics', label: 'Analytics' }
+    { href: '/analytics', label: 'Analytics' },
+    { href: '/pdf', label: 'DEX' },
+    { href: '/team', label: 'Team' }
   ]
 
   return (
