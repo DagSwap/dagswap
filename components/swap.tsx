@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { ArrowDownIcon, Wallet } from 'lucide-react'
 import TokenSelector from '@/components/token-selector'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { useRouter } from 'next/navigation'
 
 export default function Swap () {
   const [fromToken, setFromToken] = useState({
@@ -26,6 +27,8 @@ export default function Swap () {
   const [fromAmount, setFromAmount] = useState('')
   const [toAmount, setToAmount] = useState('')
   const [slippage, setSlippage] = useState(0.5)
+
+  const router = useRouter()
 
   const handleMaxClick = () => {
     setFromAmount(fromToken.balance)
@@ -73,7 +76,15 @@ export default function Swap () {
     <Card className='bg-[#342858]/40 backdrop-blur-lg rounded-[55px] shadow-lg border border-[#2a2a5a]/50 overflow-hidden min-w-[450px]'>
       <CardContent className='p-6'>
         <div className='mb-3'>
-          <Tabs defaultValue='swap' className='w-full'>
+          <Tabs
+            defaultValue='swap'
+            className='w-full'
+            onValueChange={val => {
+              if (val === 'limit') router.push('/liquidity')
+              else if (val === 'dca') router.push('/dca')
+              // else do nothing (swap)
+            }}
+          >
             <TabsList className='inline-flex h-9 items-center py-6 bg-[#1A1630] justify-center rounded-full font-oxanium space-x-1'>
               <TabsTrigger
                 value='swap'

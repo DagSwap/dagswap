@@ -14,9 +14,17 @@ import {
 } from '@/components/ui/card'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { MessageSquare, X, Send, AlertCircle, Sparkles } from 'lucide-react' // Using lucide icons
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogClose
+} from '@/components/ui/dialog'
 
 export function GlobalChat () {
   const [isOpen, setIsOpen] = useState(false)
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
   const {
     messages,
     input,
@@ -32,6 +40,17 @@ export function GlobalChat () {
     }
   })
   const scrollAreaRef = useRef<HTMLDivElement>(null)
+
+  // Check messages for "Start the party."
+  useEffect(() => {
+    const lastMessage = messages[messages.length - 1]
+    if (
+      lastMessage?.role === 'assistant' &&
+      lastMessage?.content === 'Start the party.'
+    ) {
+      setIsVideoModalOpen(true)
+    }
+  }, [messages])
 
   const toggleChat = () => setIsOpen(!isOpen)
 
@@ -154,8 +173,9 @@ export function GlobalChat () {
               className='flex w-full items-center space-x-2'
             >
               <Input
-                className='flex-1 h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
+                className='flex-1 '
                 value={input}
+                style={{ fontSize: '16px' }}
                 onChange={handleInputChange}
                 placeholder='Type a message...'
                 disabled={isLoading}
@@ -168,6 +188,28 @@ export function GlobalChat () {
           </CardFooter>
         </Card>
       )}
+
+      {/* Video Modal */}
+      <Dialog open={isVideoModalOpen} onOpenChange={setIsVideoModalOpen}>
+        <DialogContent className='w-8xl'>
+          <DialogHeader>
+            <DialogTitle className='text-xl font-bold'>
+              🎉 DagSwap Party Time! 🎉
+            </DialogTitle>
+            <DialogClose className='absolute right-4 top-4' />
+          </DialogHeader>
+          <div className='aspect-video w-full'>
+            <video
+              src='https://gsr2hpvfrp.ufs.sh/f/NIbYiJT86uK3v7FnLrHA9NSBJQiCjzwLkhTtfxW5Fm0nEMXD'
+              controls
+              autoPlay
+              className='w-full h-full'
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </DialogContent>
+      </Dialog>
     </>
   )
 }
