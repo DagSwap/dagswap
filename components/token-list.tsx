@@ -106,7 +106,7 @@ export default function TokenList () {
         </div>
       </div>
 
-      <div className='rounded-[20px] z-20 overflow-hidden border border-[#3a3a70]'>
+      <div className='rounded-[20px] z-20 overflow-hidden border border-[#3a3a70] bg-[#252550]/40 backdrop-blur-lg'>
         <Table className='z-20'>
           <TableHeader className='bg-[#252550]'>
             <TableRow className='hover:bg-transparent border-b-[#3a3a70]'>
