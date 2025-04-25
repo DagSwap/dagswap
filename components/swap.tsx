@@ -12,15 +12,15 @@ import { useRouter } from 'next/navigation'
 export default function Swap () {
   const [fromToken, setFromToken] = useState({
     symbol: 'BDAG',
-    name: 'Bitdag',
-    logo: '/bdag-token.png',
+    name: 'BlockDAG',
+    logo: '/cube.webp',
     balance: '1.245'
   })
 
   const [toToken, setToToken] = useState({
-    symbol: 'DAGR',
-    name: 'Dagorath',
-    logo: '/dagr-token.png',
+    symbol: 'DAGGR',
+    name: 'DagSwap',
+    logo: '/assets/logo.png',
     balance: '0'
   })
 
