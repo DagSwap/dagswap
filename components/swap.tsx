@@ -72,7 +72,7 @@ export default function Swap () {
   return (
     <Card className='bg-[#342858]/40 backdrop-blur-lg rounded-[55px] shadow-lg border border-[#2a2a5a]/50 overflow-hidden min-w-[450px]'>
       <CardContent className='p-6'>
-        <div className='mb-6'>
+        <div className='mb-3'>
           <Tabs defaultValue='swap' className='w-full'>
             <TabsList className='inline-flex h-9 items-center py-6 bg-[#1A1630] justify-center rounded-full font-oxanium space-x-1'>
               <TabsTrigger
@@ -97,7 +97,8 @@ export default function Swap () {
           </Tabs>
         </div>
 
-        <div className='space-y-4'>
+        <div className='space-y-1'>
+          {/* Sell Card */}
           <div className='rounded-[20px] bg-[#4E377B]/40 p-4'>
             <div className='flex justify-between mb-2'>
               <span className='text-2xl text-white/70 font-oxanium'>Sell</span>
@@ -131,17 +132,18 @@ export default function Swap () {
             </div>
           </div>
 
-          <div className='flex justify-center -my-2 z-10 relative'>
+          <div className='flex justify-center -my-4 z-10 relative'>
             <Button
               variant='outline'
               size='icon'
-              className='rounded-full  bg-[#4E377B]/40 border-[#3a3a70] hover:bg-[#2a2a5a] hover:text-white'
+              className='rounded-full bg-[#342858]/40 border-2 border-[#4E377B] hover:bg-[#4E377B]/60 hover:border-[#4E377B] hover:text-white'
               onClick={switchTokens}
             >
               <ArrowDownIcon className='h-4 w-4' />
             </Button>
           </div>
 
+          {/* Buy Card */}
           <div className='rounded-[20px]  bg-[#4E377B]/40 p-4'>
             <div className='flex justify-between mb-2'>
               <span className='text-sm text-white/70 font-oxanium'>Buy</span>
@@ -201,11 +203,10 @@ export default function Swap () {
               </div>
             </div>
           )}
-
-          <Button className='w-full bg-[#ff9d00] hover:bg-[#e68e00] text-white h-12 text-lg rounded-full font-oxanium'>
-            Swap
-          </Button>
         </div>
+        <Button className='w-full bg-[#ff9d00] hover:bg-[#e68e00] text-white h-12 text-lg rounded-full mt-3'>
+          Swap
+        </Button>
       </CardContent>
     </Card>
   )

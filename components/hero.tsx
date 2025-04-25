@@ -49,7 +49,7 @@ export default function Hero () {
         width={800}
         height={800}
         objectFit='cover'
-        className='absolute bottom-[-120px]'
+        className='absolute bottom-[-100px]'
       />
     </div>
   )
