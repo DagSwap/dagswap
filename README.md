@@ -21,7 +21,7 @@ A web interface for a decentralized exchange (DEX) built with Next.js, React, Ty
 
 1.  Clone the repository:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/DagSwap/dagswap.git
     cd dagswap
     ```
 2.  Install dependencies:
