@@ -8,7 +8,7 @@ import '@rainbow-me/rainbowkit/styles.css'
 
 const config = getDefaultConfig({
   appName: 'DagSwap',
-  projectId: '0efa6a9d01cd618fd0e40a372fe7c4fe', // your WalletConnect projectId
+  projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || '' , // your WalletConnect projectId
   chains: [mainnet, sepolia],
   transports: {
     [mainnet.id]: http(),
