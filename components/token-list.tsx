@@ -108,16 +108,16 @@ export default function TokenList () {
 
       <div className='rounded-[20px] z-20 overflow-hidden border border-[#3a3a70] bg-[#252550]/40 backdrop-blur-lg'>
         <div className="overflow-x-auto">
-          <Table className='z-20 min-w-[600px]'>
+          <Table className='z-20'>
             <TableHeader className='bg-[#252550]'>
               <TableRow className='hover:bg-transparent border-b-[#3a3a70]'>
-                <TableHead className='text-white'>Token</TableHead>
-                <TableHead className='text-white'>Price</TableHead>
-                <TableHead className='text-white'>24h Change</TableHead>
-                <TableHead className='text-white hidden md:table-cell'>
+                <TableHead className='text-white whitespace-nowrap'>Token</TableHead>
+                <TableHead className='text-white whitespace-nowrap'>Price</TableHead>
+                <TableHead className='text-white whitespace-nowrap'>24h Change</TableHead>
+                <TableHead className='text-white hidden md:table-cell whitespace-nowrap'>
                   24h Volume
                 </TableHead>
-                <TableHead className='text-white hidden md:table-cell'>
+                <TableHead className='text-white hidden md:table-cell whitespace-nowrap'>
                   Market Cap
                 </TableHead>
               </TableRow>
@@ -143,16 +143,16 @@ export default function TokenList () {
                       </div>
                     </div>
                   </TableCell>
-                  <TableCell className='font-medium'>{token.price}</TableCell>
+                  <TableCell className='font-medium whitespace-nowrap'>{token.price}</TableCell>
                   <TableCell
-                    className={token.positive ? 'text-green-400' : 'text-red-400'}
+                    className={`${token.positive ? 'text-green-400' : 'text-red-400'} whitespace-nowrap`}
                   >
                     {token.change}
                   </TableCell>
-                  <TableCell className='hidden md:table-cell'>
+                  <TableCell className='hidden md:table-cell whitespace-nowrap'>
                     {token.volume}
                   </TableCell>
-                  <TableCell className='hidden md:table-cell'>
+                  <TableCell className='hidden md:table-cell whitespace-nowrap'>
                     {token.marketCap}
                   </TableCell>
                 </TableRow>
