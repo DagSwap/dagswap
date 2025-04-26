@@ -119,7 +119,8 @@ export default function Swap () {
               <Input
                 type='number'
                 placeholder='0.0'
-                className='border-0 bg-transparent text-6xl text-[#FFC94D] focus-visible:ring-0 focus-visible:ring-offset-0 p-0 font-oxanium placeholder:text-[#FFC94D]'
+                className='border-0 bg-transparent text-[#FFC94D] focus-visible:ring-0 focus-visible:ring-offset-0 p-0 font-oxanium placeholder:text-[#FFC94D]'
+                style={{ fontSize: '1.5rem', lineHeight: '2rem' }}
                 value={fromAmount}
                 onChange={handleFromAmountChange}
               />
@@ -167,7 +168,8 @@ export default function Swap () {
               <Input
                 type='number'
                 placeholder='0.0'
-                className='border-0 bg-transparent text-5xl placeholder:text-[#FFC94D] text-[#FFC94D] focus-visible:ring-0 focus-visible:ring-offset-0 p-0 font-oxanium'
+                className='border-0 bg-transparent placeholder:text-[#FFC94D] text-[#FFC94D] focus-visible:ring-0 focus-visible:ring-offset-0 p-0 font-oxanium'
+                style={{ fontSize: '1.5rem', lineHeight: '2rem' }}
                 value={toAmount}
                 onChange={handleToAmountChange}
               />

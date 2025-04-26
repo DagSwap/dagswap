@@ -330,7 +330,7 @@ export default function Farm () {
                                   isNaN(Number.parseFloat(stakeAmount)) ||
                                   Number.parseFloat(stakeAmount) <= 0
                                 }
-                                className='bg-[#ff9d00] hover:bg-[#e68e00] text-white rounded-full'
+                                variant="dagOrange"
                               >
                                 Confirm
                               </Button>
@@ -352,7 +352,7 @@ export default function Farm () {
               </p>
               <Button
                 variant='link'
-                className='mt-2 text-[#ff9d00] hover:text-[#e68e00]'
+                className='mt-2 text-dag-orange hover:text-[#e68e00]'
                 onClick={() => setActiveTab('active')}
               >
                 Stake in a farm

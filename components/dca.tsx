@@ -235,7 +235,8 @@ export default function DCA () {
               </div>
 
               <Button
-                className='bg-[#ff9d00] hover:bg-[#e68e00] text-white rounded-full font-oxanium'
+                variant="dagOrange"
+                className="font-oxanium"
                 onClick={() => setShowNewDCA(true)}
               >
                 Create New DCA
@@ -451,7 +452,7 @@ export default function DCA () {
                   </p>
                   <Button
                     variant='link'
-                    className='mt-2 text-[#ff9d00] hover:text-[#e68e00] font-oxanium'
+                    className='mt-2 text-dag-orange hover:text-[#e68e00] font-oxanium'
                     onClick={() => setShowNewDCA(true)}
                   >
                     Create your first DCA
@@ -601,7 +602,8 @@ export default function DCA () {
                 isNaN(Number.parseFloat(amount)) ||
                 Number.parseFloat(amount) <= 0
               }
-              className='bg-[#ff9d00] hover:bg-[#e68e00] text-white rounded-full font-oxanium'
+              variant="dagOrange"
+              className="font-oxanium"
             >
               Create DCA Order (Coming Soon)
             </Button>

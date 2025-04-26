@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Swap from './swap'
 import { useState } from 'react'
 import { VideoModal } from './VideoModal'
+import { Button } from "@/components/ui/button"
 
 export default function Hero () {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
@@ -29,12 +30,14 @@ export default function Hero () {
               LightSpeed Swap!
             </p>
             <div className='flex gap-4 mb-12'>
-              <button
+              <Button
                 onClick={() => setIsVideoModalOpen(true)}
-                className='px-5 py-2 bg-[#ff9d00] text-white rounded-full font-medium hover:bg-[#e68e00] transition-colors'
+                variant="dagOrange"
+                size="default"
+                className="px-5 font-medium"
               >
                 Start Trading
-              </button>
+              </Button>
               <a
                 href='/pdf'
                 className='px-5 py-2 bg-transparent border border-[#ff9d00] text-[#ff9d00] rounded-full font-medium hover:bg-[#ff9d00]/10 transition-colors'

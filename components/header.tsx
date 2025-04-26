@@ -7,6 +7,8 @@ import Link from 'next/link'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { Button, buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 export default function Header () {
   const { setTheme } = useTheme()
@@ -19,7 +21,8 @@ export default function Header () {
     { href: '/dca', label: 'DCA' },
     { href: '/analytics', label: 'Analytics' },
     { href: '/pdf', label: 'DEX' },
-    { href: '/team', label: 'Team' }
+    { href: '/team', label: 'Team' },
+    { href: '/contact', label: 'Contact' }
   ]
 
   return (
@@ -95,29 +98,32 @@ export default function Header () {
                   })}
                 >
                   {!connected ? (
-                    <button
+                    <Button
                       onClick={openConnectModal}
-                      type='button'
-                      className='bg-[#ff9d00] hover:bg-[#e68e00] text-white rounded-full px-6 py-2 font-oxanium font-bold transition'
+                      variant="dagOrange"
+                      size="default"
+                      className='font-oxanium'
                     >
                       Connect Wallet
-                    </button>
+                    </Button>
                   ) : chain.unsupported ? (
-                    <button
+                    <Button
                       onClick={openChainModal}
-                      type='button'
-                      className='bg-red-600 text-white rounded-full px-6 py-2 font-oxanium font-bold transition'
+                      variant="destructive"
+                      size="default"
+                      className='rounded-full font-oxanium'
                     >
                       Wrong network
-                    </button>
+                    </Button>
                   ) : (
-                    <button
+                    <Button
                       onClick={openAccountModal}
-                      type='button'
-                      className='bg-[#ff9d00] hover:bg-[#e68e00] text-white rounded-full px-6 py-2 font-oxanium font-bold transition'
+                      variant="dagOrange"
+                      size="default"
+                      className='font-oxanium'
                     >
                       {account.displayName}
-                    </button>
+                    </Button>
                   )}
                 </div>
               )

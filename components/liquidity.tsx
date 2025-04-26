@@ -255,7 +255,7 @@ export default function Liquidity () {
                 </p>
                 <Button
                   variant='link'
-                  className='mt-2 text-[#ff9d00] hover:text-[#e68e00]'
+                  className='mt-2 text-dag-orange hover:text-[#e68e00]'
                   onClick={() => {
                     const addButton =
                       document.querySelector<HTMLElement>('[data-value="add"]')
