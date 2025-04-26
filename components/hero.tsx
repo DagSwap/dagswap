@@ -63,7 +63,7 @@ export default function Hero () {
         width={500}
         height={500}
         objectFit='contain'
-        className='relative md:absolute mt-8 md:mt-0 bottom-0 md:bottom-[-100px] w-[70vw] max-w-[500px] md:w-auto md:max-w-none md:h-[800px] md:object-cover'
+        className='relative md:absolute mt-8 md:mt-0 bottom-0 md:bottom-[-100px] w-[70vw] max-w-[500px] md:w-auto md:max-w-none md:h-[800px] md:object-cover md:left-1/2 md:-translate-x-1/2'
       />
       
       <VideoModal 
