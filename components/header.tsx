@@ -29,7 +29,12 @@ export default function Header () {
     <header className='border-b border-[#2a2a5a] bg-[#161630]/80 backdrop-blur-md sticky top-0 z-30'>
       <div className='container mx-auto px-4 py-3 flex items-center justify-between'>
         <div className='flex items-center gap-2'>
-          <div className='relative'>
+          
+          <Link
+            href='/'
+            className='font-bold text-xl font-oxanium flex items-center'
+          > 
+          <div className='relative mr-1'>
             <Image
               src='/assets/logo.png'
               alt='Dag Logo'
@@ -37,10 +42,6 @@ export default function Header () {
               height={28}
             />
           </div>
-          <Link
-            href='/'
-            className='font-bold text-xl hidden sm:inline font-oxanium'
-          >
             <span className='text-white'>Dag</span>
             <span className='text-[#ff9d00]'>Swap</span>
           </Link>
