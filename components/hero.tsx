@@ -8,8 +8,8 @@ export default function Hero () {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
 
   return (
-    <div className='pt-4 pb-16 flex flex-col relative items-center justify-start h-[75vh]'>
-      <div className='flex flex-row justify-between w-full z-20 '>
+    <div className='container mx-auto px-4 pt-4 pb-16 flex flex-col md:flex-row items-center md:items-start md:justify-between relative h-auto md:h-[75vh]'>
+      <div className='hidden md:flex md:flex-col justify-start z-20'>
         <div>
           <div className='flex items-center mb-4'>
             <div className='relative'>
@@ -47,16 +47,23 @@ export default function Hero () {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className='hidden md:block z-20'>
+        <Swap />
+      </div>
+
+      <div className="md:hidden w-full flex justify-center z-20">
         <Swap />
       </div>
 
       <Image
         src='/assets/Layer 13.png'
         alt='Character'
-        width={800}
-        height={800}
-        objectFit='cover'
-        className='absolute bottom-[-100px]'
+        width={500}
+        height={500}
+        objectFit='contain'
+        className='relative md:absolute mt-8 md:mt-0 bottom-0 md:bottom-[-100px] w-[70vw] max-w-[500px] md:w-auto md:max-w-none md:h-[800px] md:object-cover'
       />
       
       <VideoModal 
