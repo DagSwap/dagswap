@@ -57,6 +57,16 @@ export default function RootLayout ({
 }) {
   return (
     <html lang='en' suppressHydrationWarning className={` ${ggSans.variable} `}>
+      {/* Google tag (gtag.js) */}
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-80Q08KS8Y0"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-80Q08KS8Y0');
+      </script>
+
       <body className='font-sans flex flex-col min-h-screen'>
         <ThemeProvider
           attribute='class'
