@@ -73,7 +73,7 @@ export default function Swap () {
   }
 
   return (
-    <Card className='bg-[#342858]/40 backdrop-blur-lg rounded-[55px] shadow-lg border border-[#2a2a5a]/50 overflow-hidden min-w-[450px]'>
+    <Card className='w-full md:min-w-[450px] bg-[#342858]/40 backdrop-blur-lg rounded-[55px] shadow-lg border border-[#2a2a5a]/50 overflow-hidden'>
       <CardContent className='p-6'>
         <div className='mb-3'>
           <Tabs

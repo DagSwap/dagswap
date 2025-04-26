@@ -93,9 +93,9 @@ export default function TokenList () {
 
   return (
     <div className='z-20'>
-      <div className='flex items-center justify-between'>
-        <h2 className='text-6xl font-bold text-center mb-8 z-20'>Top Tokens</h2>
-        <div className='relative mb-6 min-w-[300px] z-20'>
+      <div className='flex items-center justify-between flex-wrap gap-4'>
+        <h2 className='text-4xl md:text-6xl font-bold mb-4 md:mb-8 z-20'>Top Tokens</h2>
+        <div className='relative mb-4 md:mb-6 z-20 w-full sm:w-auto'>
           <Search className='absolute left-2.5 top-2.5 h-4 w-4 text-dag-orange' />
           <Input
             placeholder='Search tokens'
@@ -107,57 +107,59 @@ export default function TokenList () {
       </div>
 
       <div className='rounded-[20px] z-20 overflow-hidden border border-[#3a3a70] bg-[#252550]/40 backdrop-blur-lg'>
-        <Table className='z-20'>
-          <TableHeader className='bg-[#252550]'>
-            <TableRow className='hover:bg-transparent border-b-[#3a3a70]'>
-              <TableHead className='text-white w-[250px]'>Token</TableHead>
-              <TableHead className='text-white'>Price</TableHead>
-              <TableHead className='text-white'>24h Change</TableHead>
-              <TableHead className='text-white hidden md:table-cell'>
-                24h Volume
-              </TableHead>
-              <TableHead className='text-white hidden md:table-cell'>
-                Market Cap
-              </TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filteredTokens.map(token => (
-              <TableRow
-                key={token.id}
-                className='hover:bg-[#252550] border-b-[#3a3a70]'
-              >
-                <TableCell>
-                  <div className='flex items-center gap-3'>
-                    <img
-                      src={token.logo || '/placeholder.svg'}
-                      alt={token.symbol}
-                      className='w-8 h-8 rounded-full'
-                    />
-                    <div>
-                      <div className='font-medium'>{token.name}</div>
-                      <div className='text-sm text-white/70'>
-                        {token.symbol}
+        <div className="overflow-x-auto">
+          <Table className='z-20 min-w-[600px]'>
+            <TableHeader className='bg-[#252550]'>
+              <TableRow className='hover:bg-transparent border-b-[#3a3a70]'>
+                <TableHead className='text-white'>Token</TableHead>
+                <TableHead className='text-white'>Price</TableHead>
+                <TableHead className='text-white'>24h Change</TableHead>
+                <TableHead className='text-white hidden md:table-cell'>
+                  24h Volume
+                </TableHead>
+                <TableHead className='text-white hidden md:table-cell'>
+                  Market Cap
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {filteredTokens.map(token => (
+                <TableRow
+                  key={token.id}
+                  className='hover:bg-[#252550] border-b-[#3a3a70]'
+                >
+                  <TableCell>
+                    <div className='flex items-center gap-3'>
+                      <img
+                        src={token.logo || '/placeholder.svg'}
+                        alt={token.symbol}
+                        className='w-8 h-8 rounded-full'
+                      />
+                      <div>
+                        <div className='font-medium'>{token.name}</div>
+                        <div className='text-sm text-white/70'>
+                          {token.symbol}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </TableCell>
-                <TableCell className='font-medium'>{token.price}</TableCell>
-                <TableCell
-                  className={token.positive ? 'text-green-400' : 'text-red-400'}
-                >
-                  {token.change}
-                </TableCell>
-                <TableCell className='hidden md:table-cell'>
-                  {token.volume}
-                </TableCell>
-                <TableCell className='hidden md:table-cell'>
-                  {token.marketCap}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+                  </TableCell>
+                  <TableCell className='font-medium'>{token.price}</TableCell>
+                  <TableCell
+                    className={token.positive ? 'text-green-400' : 'text-red-400'}
+                  >
+                    {token.change}
+                  </TableCell>
+                  <TableCell className='hidden md:table-cell'>
+                    {token.volume}
+                  </TableCell>
+                  <TableCell className='hidden md:table-cell'>
+                    {token.marketCap}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     </div>
   )
