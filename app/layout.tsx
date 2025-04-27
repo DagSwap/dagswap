@@ -10,6 +10,8 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import { PostHogProvider } from '@/providers/posthog-provider'
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 
 const oxanium = Oxanium({
   subsets: ['latin'],
@@ -57,19 +59,7 @@ export default function RootLayout ({
 }) {
   return (
     <html lang='en' suppressHydrationWarning className={` ${ggSans.variable} `}>
-      {/* Google tag (gtag.js) */}
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-80Q08KS8Y0"></script>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-80Q08KS8Y0');
-          `,
-        }}
-      />
-
+      <GoogleAnalytics gaId='G-MQF3RBJP1M' />
       <body className='font-sans flex flex-col min-h-screen'>
         <ThemeProvider
           attribute='class'
