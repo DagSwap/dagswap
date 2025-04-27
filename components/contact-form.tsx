@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea' // Although not strictly required by the prompt, a message field might be useful
 import { useToast } from "@/components/ui/use-toast"
+import { submitContactForm } from '@/app/actions/contact' // Import the server action
 
 export default function ContactForm() {
   const { toast } = useToast()
@@ -16,6 +17,7 @@ export default function ContactForm() {
     wallet: '',
     message: '' // Optional message field
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -27,23 +29,31 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // TODO: Implement form submission logic (e.g., send data to an API endpoint)
-    console.log('Form data submitted:', formData)
+    setIsSubmitting(true)
 
-    // Example: Show a success toast
-    toast({
-      title: "Registration Submitted!",
-      description: "We've received your details. Stay tuned for updates!",
-    })
+    const result = await submitContactForm(formData)
 
-    // Optionally clear the form
-    setFormData({
-      name: '',
-      email: '',
-      telegram: '',
-      wallet: '',
-      message: ''
-    })
+    if (result.success) {
+      toast({
+        title: "Registration Submitted!",
+        description: "We've received your details. Stay tuned for updates!",
+      })
+      // Optionally clear the form
+      setFormData({
+        name: '',
+        email: '',
+        telegram: '',
+        wallet: '',
+        message: ''
+      })
+    } else {
+      toast({
+        title: "Submission Failed",
+        description: result.error || "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      })
+    }
+    setIsSubmitting(false)
   }
 
   return (
@@ -63,7 +73,8 @@ export default function ContactForm() {
             onChange={handleChange}
             placeholder="Your Name"
             required
-            className="mt-1 bg-[#1e1e45] border-[#2a2a5a] text-white placeholder:text-white/50 focus:ring-[#ff9d00] focus:border-[#ff9d00]"
+            disabled={isSubmitting}
+            className="mt-1 bg-[#1e1e45] border-[#2a2a5a] text-white placeholder:text-white/50 focus:ring-[#ff9d00] focus:border-[#ff9d00] disabled:opacity-50"
           />
         </div>
         <div>
@@ -76,7 +87,8 @@ export default function ContactForm() {
             onChange={handleChange}
             placeholder="you@example.com"
             required
-            className="mt-1 bg-[#1e1e45] border-[#2a2a5a] text-white placeholder:text-white/50 focus:ring-[#ff9d00] focus:border-[#ff9d00]"
+            disabled={isSubmitting}
+            className="mt-1 bg-[#1e1e45] border-[#2a2a5a] text-white placeholder:text-white/50 focus:ring-[#ff9d00] focus:border-[#ff9d00] disabled:opacity-50"
           />
         </div>
         <div>
@@ -88,7 +100,8 @@ export default function ContactForm() {
             value={formData.telegram}
             onChange={handleChange}
             placeholder="@yourhandle"
-            className="mt-1 bg-[#1e1e45] border-[#2a2a5a] text-white placeholder:text-white/50 focus:ring-[#ff9d00] focus:border-[#ff9d00]"
+            disabled={isSubmitting}
+            className="mt-1 bg-[#1e1e45] border-[#2a2a5a] text-white placeholder:text-white/50 focus:ring-[#ff9d00] focus:border-[#ff9d00] disabled:opacity-50"
           />
         </div>
         <div>
@@ -100,7 +113,8 @@ export default function ContactForm() {
             value={formData.wallet}
             onChange={handleChange}
             placeholder="0x..."
-            className="mt-1 bg-[#1e1e45] border-[#2a2a5a] text-white placeholder:text-white/50 focus:ring-[#ff9d00] focus:border-[#ff9d00]"
+            disabled={isSubmitting}
+            className="mt-1 bg-[#1e1e45] border-[#2a2a5a] text-white placeholder:text-white/50 focus:ring-[#ff9d00] focus:border-[#ff9d00] disabled:opacity-50"
           />
         </div>
         {/* Optional Message Field */}
@@ -113,11 +127,12 @@ export default function ContactForm() {
             value={formData.message}
             onChange={handleChange}
             placeholder="Any additional comments?"
-            className="mt-1 bg-[#1e1e45] border-[#2a2a5a] text-white placeholder:text-white/50 focus:ring-[#ff9d00] focus:border-[#ff9d00]"
+            disabled={isSubmitting}
+            className="mt-1 bg-[#1e1e45] border-[#2a2a5a] text-white placeholder:text-white/50 focus:ring-[#ff9d00] focus:border-[#ff9d00] disabled:opacity-50"
           />
         </div> */}
-        <Button type="submit" variant="dagOrange" className="w-full font-oxanium">
-          Register for Updates
+        <Button type="submit" variant="dagOrange" className="w-full font-oxanium" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Register for Updates'}
         </Button>
       </form>
     </div>
