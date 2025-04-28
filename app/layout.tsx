@@ -1,14 +1,17 @@
 import type React from 'react'
 import '@/app/globals.css'
-import { ThemeProvider } from '@/components/theme-provider'
+import { ThemeProvider } from '@/providers/theme-provider'
 import { Oxanium } from 'next/font/google'
 import localFont from 'next/font/local'
 import '@rainbow-me/rainbowkit/styles.css'
-import Web3Provider from '@/components/Web3Provider'
+import Web3Provider from '@/providers/Web3Provider'
 import { GlobalChat } from '@/components/GlobalChat'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
+import { PostHogProvider } from '@/providers/posthog-provider'
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 
 const oxanium = Oxanium({
   subsets: ['latin'],
@@ -56,6 +59,7 @@ export default function RootLayout ({
 }) {
   return (
     <html lang='en' suppressHydrationWarning className={` ${ggSans.variable} `}>
+      <GoogleAnalytics gaId='G-MQF3RBJP1M' />
       <body className='font-sans flex flex-col min-h-screen'>
         <ThemeProvider
           attribute='class'
@@ -63,14 +67,16 @@ export default function RootLayout ({
           enableSystem
           disableTransitionOnChange
         >
-          <Web3Provider>
-            <ScrollArea className='h-screen' type='always'>
-              <Header />
-              {children}
-              <Footer />
-            </ScrollArea>
-            <GlobalChat />
-          </Web3Provider>
+          <PostHogProvider>
+            <Web3Provider>
+              <ScrollArea className='h-screen' type='always'>
+                <Header />
+                {children}
+                <Footer />
+              </ScrollArea>
+              <GlobalChat />
+            </Web3Provider>
+          </PostHogProvider>
         </ThemeProvider>
       </body>
     </html>

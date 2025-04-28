@@ -177,171 +177,173 @@ export default function Farm () {
           </div>
 
           <TabsContent value='active'>
-            <div className='rounded-xl overflow-hidden'>
-              <Table>
-                <TableHeader className='bg-[#252550]'>
-                  <TableRow className='hover:bg-transparent border-b-[#3a3a70]'>
-                    <TableHead className='text-white'>Farm</TableHead>
-                    <TableHead className='text-white'>
-                      <div className='flex items-center gap-1'>
-                        APR
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger asChild>
-                              <Info className='h-3.5 w-3.5 text-white/50' />
-                            </TooltipTrigger>
-                            <TooltipContent className='bg-[#252550] border-[#3a3a70] text-white'>
-                              <p>Annual Percentage Rate</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </div>
-                    </TableHead>
-                    <TableHead className='text-white'>TVL</TableHead>
-                    <TableHead className='text-white'>Multiplier</TableHead>
-                    <TableHead className='text-white'>Earned</TableHead>
-                    <TableHead></TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {filteredFarms.map(farm => (
-                    <TableRow
-                      key={farm.id}
-                      className='hover:bg-[#252550] border-b-[#3a3a70]'
-                    >
-                      <TableCell>
-                        <div className='flex items-center gap-2'>
-                          <div className='flex -space-x-2'>
-                            <img
-                              src={farm.token1.logo || '/placeholder.svg'}
-                              alt={farm.token1.symbol}
-                              className='w-8 h-8 rounded-full border-2 border-[#1e1e45]'
-                            />
-                            <img
-                              src={farm.token2.logo || '/placeholder.svg'}
-                              alt={farm.token2.symbol}
-                              className='w-8 h-8 rounded-full border-2 border-[#1e1e45]'
-                            />
-                          </div>
-                          <span>{farm.pair}</span>
+            <div className='rounded-xl overflow-hidden border border-[#3a3a70]'>
+              <div className="overflow-x-auto w-full">
+                <Table className="table-fixed">
+                  <TableHeader className='bg-[#252550]'>
+                    <TableRow className='hover:bg-transparent border-b-[#3a3a70]'>
+                      <TableHead className='text-white whitespace-nowrap w-[150px]'>Farm</TableHead>
+                      <TableHead className='text-white whitespace-nowrap w-[100px]'>
+                        <div className='flex items-center gap-1'>
+                          APR
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <Info className='h-3.5 w-3.5 text-white/50' />
+                              </TooltipTrigger>
+                              <TooltipContent className='bg-[#252550] border-[#3a3a70] text-white'>
+                                <p>Annual Percentage Rate</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
                         </div>
-                      </TableCell>
-                      <TableCell className='font-medium text-green-400'>
-                        {farm.apr}%
-                      </TableCell>
-                      <TableCell>{farm.tvl}</TableCell>
-                      <TableCell>{farm.multiplier}</TableCell>
-                      <TableCell>{farm.earned} DAGGR</TableCell>
-                      <TableCell>
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button
-                              variant='outline'
-                              size='sm'
-                              onClick={() => setSelectedFarm(farm)}
-                              className='bg-[#252550] border-[#3a3a70] text-white hover:bg-[#3a3a70] rounded-full'
-                            >
-                              Stake
-                            </Button>
-                          </DialogTrigger>
-                          <DialogContent className='bg-[#252550] border-[#3a3a70] text-white rounded-[20px]'>
-                            <DialogHeader>
-                              <DialogTitle>Stake LP Tokens</DialogTitle>
-                            </DialogHeader>
-                            <div className='py-4'>
-                              <div className='flex items-center gap-2 mb-4'>
-                                <div className='flex -space-x-2'>
-                                  <img
-                                    src={
-                                      selectedFarm?.token1.logo ||
-                                      '/placeholder.svg'
-                                    }
-                                    alt={selectedFarm?.token1.symbol}
-                                    className='w-8 h-8 rounded-full border-2 border-[#1e1e45]'
-                                  />
-                                  <img
-                                    src={
-                                      selectedFarm?.token2.logo ||
-                                      '/placeholder.svg'
-                                    }
-                                    alt={selectedFarm?.token2.symbol}
-                                    className='w-8 h-8 rounded-full border-2 border-[#1e1e45]'
-                                  />
-                                </div>
-                                <span className='font-medium'>
-                                  {selectedFarm?.pair}
-                                </span>
-                              </div>
-
-                              <div className='space-y-2'>
-                                <div className='flex justify-between'>
-                                  <Label
-                                    htmlFor='stake-amount'
-                                    className='text-white'
-                                  >
-                                    Stake Amount
-                                  </Label>
-                                  <span className='text-sm text-white/70'>
-                                    Balance: 0.0 LP
-                                  </span>
-                                </div>
-                                <Input
-                                  id='stake-amount'
-                                  type='number'
-                                  placeholder='0.0'
-                                  value={stakeAmount}
-                                  onChange={e => setStakeAmount(e.target.value)}
-                                  className='bg-[#1e1e45] border-[#3a3a70] text-white rounded-full'
-                                />
-                              </div>
-
-                              <div className='mt-4 text-sm'>
-                                <div className='flex justify-between'>
-                                  <span className='text-white/70'>
-                                    Annual ROI at current rates:
-                                  </span>
-                                  <span className='font-medium'>
-                                    {stakeAmount &&
-                                    !isNaN(Number.parseFloat(stakeAmount)) &&
-                                    selectedFarm
-                                      ? `${(
-                                          ((Number.parseFloat(stakeAmount) *
-                                            selectedFarm.apr) /
-                                            100) *
-                                          10
-                                        ).toFixed(2)}`
-                                      : '$0.00'}
-                                  </span>
-                                </div>
-                              </div>
+                      </TableHead>
+                      <TableHead className='text-white whitespace-nowrap w-[100px]'>TVL</TableHead>
+                      <TableHead className='text-white whitespace-nowrap w-[100px]'>Multiplier</TableHead>
+                      <TableHead className='text-white whitespace-nowrap w-[120px]'>Earned</TableHead>
+                      <TableHead className="w-[80px]"></TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {filteredFarms.map(farm => (
+                      <TableRow
+                        key={farm.id}
+                        className='hover:bg-[#252550] border-b-[#3a3a70]'
+                      >
+                        <TableCell>
+                          <div className='flex items-center gap-2'>
+                            <div className='flex -space-x-2'>
+                              <img
+                                src={farm.token1.logo || '/placeholder.svg'}
+                                alt={farm.token1.symbol}
+                                className='w-8 h-8 rounded-full border-2 border-[#1e1e45]'
+                              />
+                              <img
+                                src={farm.token2.logo || '/placeholder.svg'}
+                                alt={farm.token2.symbol}
+                                className='w-8 h-8 rounded-full border-2 border-[#1e1e45]'
+                              />
                             </div>
-                            <DialogFooter>
+                            <span>{farm.pair}</span>
+                          </div>
+                        </TableCell>
+                        <TableCell className='font-medium text-green-400 whitespace-nowrap'>
+                          {farm.apr}%
+                        </TableCell>
+                        <TableCell className='whitespace-nowrap'>{farm.tvl}</TableCell>
+                        <TableCell className='whitespace-nowrap'>{farm.multiplier}</TableCell>
+                        <TableCell className='whitespace-nowrap'>{farm.earned} DAGGR</TableCell>
+                        <TableCell>
+                          <Dialog>
+                            <DialogTrigger asChild>
                               <Button
                                 variant='outline'
-                                onClick={() => setSelectedFarm(null)}
-                                className='border-[#3a3a70] text-white hover:bg-[#3a3a70] rounded-full'
+                                size='sm'
+                                onClick={() => setSelectedFarm(farm)}
+                                className='bg-[#252550] border-[#3a3a70] text-white hover:bg-[#3a3a70] rounded-full'
                               >
-                                Cancel
+                                Stake
                               </Button>
-                              <Button
-                                onClick={handleStake}
-                                disabled={
-                                  !stakeAmount ||
-                                  isNaN(Number.parseFloat(stakeAmount)) ||
-                                  Number.parseFloat(stakeAmount) <= 0
-                                }
-                                variant="dagOrange"
-                              >
-                                Confirm
-                              </Button>
-                            </DialogFooter>
-                          </DialogContent>
-                        </Dialog>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                            </DialogTrigger>
+                            <DialogContent className='bg-[#252550] border-[#3a3a70] text-white rounded-[20px]'>
+                              <DialogHeader>
+                                <DialogTitle>Stake LP Tokens</DialogTitle>
+                              </DialogHeader>
+                              <div className='py-4'>
+                                <div className='flex items-center gap-2 mb-4'>
+                                  <div className='flex -space-x-2'>
+                                    <img
+                                      src={
+                                        selectedFarm?.token1.logo ||
+                                        '/placeholder.svg'
+                                      }
+                                      alt={selectedFarm?.token1.symbol}
+                                      className='w-8 h-8 rounded-full border-2 border-[#1e1e45]'
+                                    />
+                                    <img
+                                      src={
+                                        selectedFarm?.token2.logo ||
+                                        '/placeholder.svg'
+                                      }
+                                      alt={selectedFarm?.token2.symbol}
+                                      className='w-8 h-8 rounded-full border-2 border-[#1e1e45]'
+                                    />
+                                  </div>
+                                  <span className='font-medium'>
+                                    {selectedFarm?.pair}
+                                  </span>
+                                </div>
+
+                                <div className='space-y-2'>
+                                  <div className='flex justify-between'>
+                                    <Label
+                                      htmlFor='stake-amount'
+                                      className='text-white'
+                                    >
+                                      Stake Amount
+                                    </Label>
+                                    <span className='text-sm text-white/70'>
+                                      Balance: 0.0 LP
+                                    </span>
+                                  </div>
+                                  <Input
+                                    id='stake-amount'
+                                    type='number'
+                                    placeholder='0.0'
+                                    value={stakeAmount}
+                                    onChange={e => setStakeAmount(e.target.value)}
+                                    className='bg-[#1e1e45] border-[#3a3a70] text-white rounded-full'
+                                  />
+                                </div>
+
+                                <div className='mt-4 text-sm'>
+                                  <div className='flex justify-between'>
+                                    <span className='text-white/70'>
+                                      Annual ROI at current rates:
+                                    </span>
+                                    <span className='font-medium'>
+                                      {stakeAmount &&
+                                      !isNaN(Number.parseFloat(stakeAmount)) &&
+                                      selectedFarm
+                                        ? `${(
+                                            ((Number.parseFloat(stakeAmount) *
+                                              selectedFarm.apr) /
+                                              100) *
+                                            10
+                                          ).toFixed(2)}`
+                                        : '$0.00'}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                              <DialogFooter>
+                                <Button
+                                  variant='outline'
+                                  onClick={() => setSelectedFarm(null)}
+                                  className='border-[#3a3a70] text-white hover:bg-[#3a3a70] rounded-full'
+                                >
+                                  Cancel
+                                </Button>
+                                <Button
+                                  onClick={handleStake}
+                                  disabled={
+                                    !stakeAmount ||
+                                    isNaN(Number.parseFloat(stakeAmount)) ||
+                                    Number.parseFloat(stakeAmount) <= 0
+                                  }
+                                  variant="dagOrange"
+                                >
+                                  Confirm
+                                </Button>
+                              </DialogFooter>
+                            </DialogContent>
+                          </Dialog>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
             </div>
           </TabsContent>
 
