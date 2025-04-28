@@ -4,18 +4,18 @@ A web interface for a decentralized exchange (DEX) built with Next.js, React, Ty
 
 ## Features
 
-*   **Token Swapping:** Exchange cryptocurrency tokens.
-*   **Liquidity Management:** Add or remove liquidity from pools.
-*   **Dollar-Cost Averaging (DCA):** Set up automated, recurring token swaps/purchases.
-*   **Token Information:** View lists and details of available tokens.
-*   **Modern UI:** Clean interface built using shadcn/ui components.
+- **Token Swapping:** Exchange cryptocurrency tokens.
+- **Liquidity Management:** Add or remove liquidity from pools.
+- **Dollar-Cost Averaging (DCA):** Set up automated, recurring token swaps/purchases.
+- **Token Information:** View lists and details of available tokens.
+- **Modern UI:** Clean interface built using shadcn/ui components.
 
 ## Getting Started
 
 ### Prerequisites
 
-*   Node.js (Version specified in `.nvmrc` if available, otherwise latest LTS recommended)
-*   npm or yarn
+- Node.js (Version specified in `.nvmrc` if available, otherwise latest LTS recommended)
+- npm or yarn
 
 ### Installation
 
@@ -47,18 +47,18 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 In the project directory, you can run:
 
-*   `npm run dev` / `yarn dev`: Runs the app in development mode.
-*   `npm run build` / `yarn build`: Builds the app for production.
-*   `npm run start` / `yarn start`: Starts the production server.
-*   `npm run lint` / `yarn lint`: Lints the codebase using Next.js' built-in ESLint configuration.
+- `npm run dev` / `yarn dev`: Runs the app in development mode.
+- `npm run build` / `yarn build`: Builds the app for production.
+- `npm run start` / `yarn start`: Starts the production server.
+- `npm run lint` / `yarn lint`: Lints the codebase using Next.js' built-in ESLint configuration.
 
 ## Tech Stack
 
-*   **Framework:** Next.js 15
-*   **Language:** TypeScript
-*   **UI Library:** React 19
-*   **Styling:** Tailwind CSS
-*   **Component Library:** shadcn/ui
-*   **Forms:** React Hook Form + Zod
-*   **Charting:** Recharts
-*   **UI Extras:** Sonner (Toasts), Vaul (Drawers), Lucide Icons 
+- **Framework:** Next.js 15
+- **Language:** TypeScript
+- **UI Library:** React 19
+- **Styling:** Tailwind CSS
+- **Component Library:** shadcn/ui
+- **Forms:** React Hook Form + Zod
+- **Charting:** Recharts
+- **UI Extras:** Sonner (Toasts), Vaul (Drawers), Lucide Icons
