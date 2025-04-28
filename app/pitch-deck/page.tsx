@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import ViewPdfClient from './pdf-viewer';
+import ViewPdfClient from '@/app/pitch-deck/pdf-viewer';
 
 // Optional: Add a simple loading fallback component
 const LoadingPdf = () => {

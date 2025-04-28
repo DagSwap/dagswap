@@ -20,7 +20,7 @@ export default function Header () {
     { href: '/liquidity', label: 'Liquidity' },
     { href: '/dca', label: 'DCA' },
     { href: '/analytics', label: 'Analytics' },
-    { href: '/pdf', label: 'DEX' },
+    { href: '/pitch-deck', label: 'Pitch Deck' },
     { href: '/team', label: 'Team' },
     { href: '/contact', label: 'Contact' }
   ]
