@@ -39,7 +39,7 @@ export default function Hero () {
                 Start Trading
               </Button>
               <a
-                href='/pdf'
+                href='/pitch-deck?lang=en'
                 className='px-5 py-2 bg-transparent border border-[#ff9d00] text-[#ff9d00] rounded-full font-medium hover:bg-[#ff9d00]/10 transition-colors'
               >
                 Learn More

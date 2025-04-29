@@ -14,7 +14,7 @@ const Benefits2 = () => {
             Revolucionando el mercado DeFi con tecnologia BlockDAG
           </p>
           <a
-            href='/pdf'
+            href='/pitch-deck?lang=es'
             className='bg-gradient-to-r from-yellow-400 to-orange-500 text-[#161630] font-bold px-6 py-2 rounded-full hover:opacity-90 transition-opacity duration-200'
           >
             Learn More
